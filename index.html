@@ -3,31 +3,37 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>OriDynamic | Biomolecular Dynamics through Latent Ensemble Decomposition</title>
 <meta name="description" content="OriDynamic generates molecular-context-conditioned ensembles through latent ensemble decomposition: sampling representative states across conformational basins, then exploring all-atom variability within them.">
-<meta name="theme-color" content="#f8f9fc">
+<meta name="theme-color" content="#ffffff">
 <meta property="og:type" content="website"><meta property="og:title" content="OriDynamic | Biomolecular Dynamics through Latent Ensemble Decomposition">
 <meta property="og:description" content="OriDynamic generates molecular-context-conditioned ensembles through latent ensemble decomposition: sampling representative states across conformational basins, then exploring all-atom variability within them.">
 <meta property="og:image" content="https://oridynamics.github.io/assets/social-preview.png">
 <meta property="og:url" content="https://oridynamics.github.io/">
 <link rel="canonical" href="https://oridynamics.github.io/">
-<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="icon" href="favicon.ico?v=oridynamic-v6-1" sizes="16x16 24x24 32x32 48x48 64x64 128x128 256x256">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png?v=oridynamic-v6-1">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png?v=oridynamic-v6-1">
+<link rel="icon" type="image/svg+xml" sizes="any" href="assets/favicon-oridynamic-v6.svg?v=oridynamic-v6-1">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/favicon-180.png?v=oridynamic-v6-1">
 <link rel="stylesheet" href="site.css"><script src="site.js" defer></script>
 </head><body>
 <a class="skip-link" href="#video">Skip to the video</a>
 <main>
-<header class="paper-header" id="top"><div class="container">
+<div class="intro-screen" id="top">
+<header class="paper-header"><div class="container">
   <a class="wordmark" href="#top" aria-label="OriDynamic home"><img src="assets/oridynamic-logo.png" alt="OriDynamic" width="1983" height="793" decoding="async"></a>
   <h1>Biomolecular dynamics through<br class="title-break"> latent ensemble decomposition</h1>
   <p class="group-author">LGLab Frontier AI Group</p>
-  <p class="contributors"><span>Jiahao Yang<sup>1,2,*</sup></span>, <span>Dong Liu<sup>1,*</sup></span>, <span>Hongliang Li<sup>1,3</sup></span>, <span>Ji Chen<sup>1</sup></span>, <span>Yuehua Liu<sup>1</sup></span>, <span>Daoyun Ding<sup>1</sup></span>, <span>Jun Li<sup>1</sup></span>, <span>Jiahua Rao<sup>4,†</sup></span>, <span>Ziqiao Zhang<sup>1,†</sup></span>, <span>Peicong Lin<sup>1,†</sup></span>, <span>Shuangjia Zheng<sup>1,2,†</sup></span></p>
+  <p class="contributors"><span>Jiahao Yang<sup>1,2,*</sup></span>, <span>Dong Liu<sup>1,*</sup></span>, <span>Hongliang Li<sup>1,3</sup></span>, <span>Ji Chen<sup>1</sup></span>, <span>Yuehua Liu<sup>1</sup></span>, <span>Daoyun Ding<sup>1</sup></span>, <span>Jun Li<sup>1</sup></span>, <span>Jiahua Rao<sup>4,†</sup></span>, <span>Ziqiao Zhang<sup>1,†</sup></span>, <span class="author-pair"><span>Peicong Lin<sup>1,†</sup></span>, <span>Shuangjia Zheng<sup>1,2,†</sup></span></span></p>
   <div class="affiliations"><span><sup>1</sup>Lingang Laboratory, Shanghai, China</span><span><sup>2</sup>Shanghai Jiao Tong University, Shanghai, China</span><span><sup>3</sup>Fudan University, Shanghai, China</span><span><sup>4</sup>Sun Yat-sen University, Guangzhou, China</span></div>
   <p class="author-note">* Equal contribution &nbsp; · &nbsp; † Corresponding authors</p>
   <div class="paper-links">
-    <a class="pill" href="assets/manuscript.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M6 3h8l4 4v14H6V3Zm8 0v5h4M9 12h6M9 16h6"/></svg> Manuscript PDF</a>
-    <a class="pill" href="https://github.com/oridynamics" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="m8 7-5 5 5 5m8-10 5 5-5 5M14 4l-4 16"/></svg> GitHub Organization</a>
+    <button class="pill" type="button" disabled title="Link will be available later"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M6 3h8l4 4v14H6V3Zm8 0v5h4M9 12h6M9 16h6"/></svg> Technical Report</button>
+    <button class="pill" type="button" disabled title="Link will be available later"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="m8 7-5 5 5 5m8-10 5 5-5 5M14 4l-4 16"/></svg> Github Code</button>
   </div>
 </div></header>
+</div>
 
-<section class="video-section container" id="video" aria-label="Project video">
+<section class="video-section reading-width" id="video" aria-label="Project video">
   <figure class="video-figure">
     <div class="video-frame">
       <video id="project-video" controls playsinline muted loop preload="metadata" width="1920" height="1080" poster="assets/video-poster.jpg" aria-label="OriDynamic molecular ensemble examples">
@@ -42,11 +48,11 @@
   <h2>Abstract</h2><p class="abstract-text">Biomolecular function depends on both alternative structural states and atomic fluctuations within each state. OriDynamic organizes these two levels of variability through latent ensemble decomposition. A structural autoencoder learns a continuous representation, a flow module samples representative conformations across basins, and a conditional refinement module explores all-atom variability within them. Ensemble-level objectives constrain mean positions, fluctuation amplitudes and joint coordinate covariance. A jointly trained model supports protein monomers, protein–ligand complexes and protein–protein assemblies, with evaluation across four public ensemble benchmarks. Application studies examine alternative experimental states and partner-dependent apo and holo conformations. A separately adapted model is evaluated on ligand-dissociation-related configurations. OriDynamic produces time-independent structural ensembles that can support testable hypotheses about molecular recognition and function.</p>
 </div></section>
 
-<section class="overview-section container" id="overview" aria-labelledby="overview-title">
+<section class="overview-section reading-width" id="overview" aria-labelledby="overview-title">
   <h2 id="overview-title">Overview</h2>
   <figure class="research-figure">
       <button class="figure-button" type="button" data-figure="assets/overview.webp" data-title="OriDynamic overview" aria-label="Enlarge OriDynamic overview">
-        <img src="assets/overview.webp" width="2600" height="2051" alt="Latent ensemble decomposition connects molecular context to representative states across conformational basins and all-atom variability within each state. The complete overview shows the molecular inputs, framework, ensemble-level supervision and sampling strategy." loading="lazy" decoding="async" >
+        <img src="assets/overview.webp" width="2600" height="2046" alt="Latent ensemble decomposition connects molecular context to representative states across conformational basins and all-atom variability within each state. The complete overview shows the molecular inputs, framework, ensemble-level supervision and sampling strategy." loading="lazy" decoding="async" >
         <span class="enlarge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/></svg> View full size</span>
       </button>
       <figcaption><strong>OriDynamic overview.</strong> Latent ensemble decomposition connects molecular context to representative states across conformational basins and all-atom variability within each state. The complete overview shows the molecular inputs, framework, ensemble-level supervision and sampling strategy.</figcaption>
@@ -57,12 +63,12 @@
   <h2>Highlights</h2><ul class="highlights"><li><strong>Across basins. Within states.</strong> Latent flow samples representative conformations; conditional all-atom refinement explores variability around them.</li><li><strong>Learn the ensemble statistics</strong> Mean positions, fluctuation amplitudes and trace-normalized joint covariance guide the final generated ensemble.</li><li><strong>One framework, multiple molecular contexts</strong> A jointly trained model supports protein monomers, protein–ligand complexes and protein–protein assemblies.</li><li><strong>From alternative states to molecular interactions</strong> Application studies examine experimental state recovery, partner-dependent responses and dissociation-related ligand configurations.</li></ul>
 </div></section>
 
-<section class="section section-soft" id="architecture"><div class="container">
+<section class="section section-soft" id="architecture"><div class="reading-width">
   <h2>Architecture</h2>
   <p class="section-intro">Representative states across basins. Atomic fluctuations within them.</p>
   <figure class="research-figure">
       <button class="figure-button" type="button" data-figure="assets/method.webp" data-title="Architecture" aria-label="Enlarge Architecture">
-        <img src="assets/method.webp" width="2600" height="639" alt="Molecular context conditions structural encoding, latent generation, decoding and all-atom refinement." loading="lazy" decoding="async" >
+        <img src="assets/method.webp" width="2600" height="640" alt="Molecular context conditions structural encoding, latent generation, decoding and all-atom refinement." loading="lazy" decoding="async" >
         <span class="enlarge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/></svg> View full size</span>
       </button>
       <figcaption><strong>Architecture.</strong> Molecular context conditions structural encoding, latent generation, decoding and all-atom refinement.</figcaption>
@@ -77,60 +83,44 @@
 </div></section>
 
 <section class="section" id="performance"><div class="container">
-  <h2>Ensemble Performance</h2>
-  <p class="section-intro">Evaluation across protein monomers, protein–ligand complexes and protein–protein assemblies.</p>
-  <p class="section-text benchmark-note">The same model is jointly trained on ATLAS, MISATO and mdCATH; DynaPPI evaluates protein–protein assemblies. The values below are manuscript point estimates. Atom selections and sampling budgets differ across benchmarks.</p>
-  <article class="result-block"><h3>Protein monomers</h3><p class="section-text">OriDynamic is evaluated on 82 ATLAS targets and 100 mdCATH targets with 250 predictions per target. Evaluation combines flexibility correlations, ensemble distances and structural diversity.</p>
-      <div class="metric-line"><strong>0.892</strong> ATLAS <span>·</span> <strong>0.847</strong> mdCATH</div><p class="metric-note">Median within-target RMSF Pearson correlation, evaluated on protein Cα atoms.</p>
+  <h2>In silico performance</h2>
+  <article class="result-block"><h3>Protein monomers</h3>
       <figure class="research-figure">
       <button class="figure-button" type="button" data-figure="assets/benchmarks.webp" data-title="Protein monomer ensembles" aria-label="Enlarge Protein monomer ensembles">
-        <img src="assets/benchmarks.webp" width="2600" height="2441" alt="Protein monomer ensemble fidelity on ATLAS and mdCATH." loading="lazy" decoding="async" >
+        <img src="assets/benchmarks.webp" width="2600" height="2409" alt="Protein monomer ensemble fidelity on ATLAS and mdCATH." loading="lazy" decoding="async" >
         <span class="enlarge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/></svg> View full size</span>
       </button>
       <figcaption>Protein monomer ensemble fidelity on ATLAS and mdCATH.</figcaption>
-    </figure></article><article class="result-block"><h3>Protein–ligand complexes</h3><p class="section-text">Evaluation on 255 complexes, with 100 predictions per target, examines protein and ligand flexibility, intermolecular distances and interaction distributions.</p>
-      <div class="metric-line"><strong>0.695</strong> MISATO</div><p class="metric-note">Median within-target RMSF Pearson correlation, evaluated on ligand heavy atoms.</p>
+    </figure></article><article class="result-block"><h3>Protein–ligand complexes</h3>
       <figure class="research-figure">
       <button class="figure-button" type="button" data-figure="assets/ligand-benchmarks.webp" data-title="Protein–ligand ensembles" aria-label="Enlarge Protein–ligand ensembles">
-        <img src="assets/ligand-benchmarks.webp" width="2600" height="2786" alt="Protein–ligand ensemble fidelity on MISATO. Structural examples illustrate selected cases." loading="lazy" decoding="async" >
+        <img src="assets/ligand-benchmarks.webp" width="2600" height="2765" alt="Protein–ligand ensemble fidelity on MISATO. Structural examples illustrate selected cases." loading="lazy" decoding="async" >
         <span class="enlarge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/></svg> View full size</span>
       </button>
       <figcaption>Protein–ligand ensemble fidelity on MISATO. Structural examples illustrate selected cases.</figcaption>
-    </figure></article><article class="result-block"><h3>Protein–protein assemblies</h3><p class="section-text">Evaluation on 36 complexes, with 100 predictions per target, examines whole-complex and interface fluctuations, contact geometry and distributional coverage.</p>
-      <div class="metric-line"><strong>0.786</strong> DynaPPI</div><p class="metric-note">Median within-target RMSF Pearson correlation, evaluated on whole-complex heavy atoms.</p>
+    </figure></article><article class="result-block"><h3>Protein–protein assemblies</h3>
       <figure class="research-figure">
       <button class="figure-button" type="button" data-figure="assets/ppi-benchmarks.webp" data-title="Protein–protein ensembles" aria-label="Enlarge Protein–protein ensembles">
-        <img src="assets/ppi-benchmarks.webp" width="2600" height="2876" alt="Protein–protein ensemble fidelity on DynaPPI. Structural examples illustrate selected cases." loading="lazy" decoding="async" >
+        <img src="assets/ppi-benchmarks.webp" width="2600" height="2363" alt="Protein–protein ensemble fidelity on DynaRepo-PPI. Structural examples illustrate selected cases." loading="lazy" decoding="async" >
         <span class="enlarge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/></svg> View full size</span>
       </button>
-      <figcaption>Protein–protein ensemble fidelity on DynaPPI. Structural examples illustrate selected cases.</figcaption>
+      <figcaption>Protein–protein ensemble fidelity on DynaRepo-PPI. Structural examples illustrate selected cases.</figcaption>
     </figure></article>
 </div></section>
 
 <section class="section section-soft" id="applications"><div class="container">
   <h2>Applications</h2>
-  <p class="section-intro">From alternative conformations to molecular interactions.</p>
-  <article class="result-block"><h3>Alternative experimental states</h3><p class="section-text">OriDynamic explores distinct experimentally observed conformations, including domain rearrangements and local structural changes.</p>
-      <div class="metric-line"><strong>64.8%</strong> dual-state TM-score success</div><p class="metric-note">ConforMix · 59 of 91 targets · 100 samples per target.</p>
+  <article class="result-block"><h3>Alternative states and partner-dependent responses</h3>
       <figure class="research-figure">
-      <button class="figure-button" type="button" data-figure="assets/states.webp" data-title="Alternative experimental conformations" aria-label="Enlarge Alternative experimental conformations">
-        <img src="assets/states.webp" width="2600" height="2449" alt="Recovery of alternative experimental conformations on ConforMix." loading="lazy" decoding="async" >
+      <button class="figure-button" type="button" data-figure="assets/applications.webp" data-title="Alternative states and partner-dependent responses" aria-label="Enlarge Alternative states and partner-dependent responses">
+        <img src="assets/applications.webp" width="2600" height="3260" alt="Recovery of alternative experimental conformations on ConforMix and structural responses to ligand or protein partners on ProMiSE." loading="lazy" decoding="async" >
         <span class="enlarge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/></svg> View full size</span>
       </button>
-      <figcaption>Recovery of alternative experimental conformations on ConforMix.</figcaption>
-    </figure><details class="evaluation-note"><summary>Evaluation details</summary><p>For each reference state, success requires a sample with TM-score > 0.8 that is closer to that state than to the opposite state. Selected structural illustrations use separate 1,000-sample ensembles.</p></details></article><article class="result-block"><h3>Partner-dependent conformational responses</h3><p class="section-text">Comparing apo and holo ensembles reveals how a ligand or protein partner can change the accessible conformational states.</p>
-      <div class="metric-line"><strong>54.7%</strong> cluster-weighted dual-state success</div><p class="metric-note">ProMiSE · 456 structure pairs in 160 clusters · 100 samples per condition.</p>
-      <figure class="research-figure">
-      <button class="figure-button" type="button" data-figure="assets/context.webp" data-title="Partner-dependent structural responses" aria-label="Enlarge Partner-dependent structural responses">
-        <img src="assets/context.webp" width="2600" height="2704" alt="Partner-dependent structural responses on ProMiSE." loading="lazy" decoding="async" >
-        <span class="enlarge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/></svg> View full size</span>
-      </button>
-      <figcaption>Partner-dependent structural responses on ProMiSE.</figcaption>
-    </figure><details class="evaluation-note"><summary>Evaluation details</summary><p>This result weights clusters equally. Pair-weighted success is 45.4% (ESMFold2: 49.6%). Rankings depend on weighting and the reference-scoring policy described in the manuscript.</p></details></article><article class="result-block"><h3>Dissociation-related ligand configurations</h3><p class="section-text">A separately DD-13M-adapted model samples ligand configurations spanning bound and displaced interaction states.</p>
-      <div class="metric-line"><strong>66.0%</strong> mean pose coverage at 2 Å</div><p class="metric-note">DD-13M · 28 test complexes · 300 samples per target.</p>
+      <figcaption>Recovery of alternative experimental conformations on ConforMix and structural responses to ligand or protein partners on ProMiSE.</figcaption>
+    </figure><details class="evaluation-note"><summary>Evaluation details</summary><p><strong>ConforMix.</strong> For each reference state, success requires a sample with TM-score > 0.8 that is closer to that state than to the opposite state. Selected structural illustrations use separate 1,000-sample ensembles.</p><p><strong>ProMiSE.</strong> The displayed success rate weights clusters equally. Pair-weighted success is 45.4% (ESMFold2: 49.6%). Rankings depend on weighting and the reference-scoring policy described in the manuscript.</p></details></article><article class="result-block"><h3>Dissociation-related ligand configurations</h3>
       <figure class="research-figure">
       <button class="figure-button" type="button" data-figure="assets/interactions.webp" data-title="Ligand configurations and interactions" aria-label="Enlarge Ligand configurations and interactions">
-        <img src="assets/interactions.webp" width="2600" height="3150" alt="Ligand configurations and interaction distributions on DD-13M, using the separately adapted model." loading="lazy" decoding="async" >
+        <img src="assets/interactions.webp" width="2600" height="3151" alt="Ligand configurations and interaction distributions on DD-13M, using the separately adapted model." loading="lazy" decoding="async" >
         <span class="enlarge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/></svg> View full size</span>
       </button>
       <figcaption>Ligand configurations and interaction distributions on DD-13M, using the separately adapted model.</figcaption>
@@ -138,16 +128,16 @@
 </div></section>
 
 <section class="section citation-section" id="citation"><div class="reading-width">
-  <h2>Citation</h2><p class="section-intro">Manuscript · October 2026</p>
+  <h2>Citation</h2><p class="section-intro">Manuscript · November 2026</p>
   <div class="citation-box"><button type="button" id="copy-citation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M15 8V3H3v13h5"/></svg> <span>Copy BibTeX</span></button><pre id="citation-text">@unpublished{oridynamic2026,
   title = {Biomolecular dynamics through latent ensemble
            decomposition with {OriDynamic}},
-  author = {{LGLab Frontier Group}},
+  author = {{LGLab Frontier AI Group}},
   year = {2026},
-  note = {Manuscript, October 2026}
+  note = {Manuscript, November 2026}
 }</pre><p id="copy-status" role="status" aria-live="polite"></p></div>
 </div></section>
 </main>
-<footer><div class="reading-width"><a class="footer-top" href="#top">Back to top ↑</a><p>© 2026 LGLab Frontier AI Group · OriDynamic</p><p>Figures and results from the manuscript dated 28 October 2026.</p><p class="design-credit">Layout inspired by the <a href="https://odesign1.github.io/" target="_blank" rel="noopener">ODesign project page</a>.</p></div></footer>
+<footer><div class="reading-width"><a class="footer-top" href="#top">Back to top ↑</a><p>© 2026 LGLab Frontier AI Group · OriDynamic</p><p>Figures from the manuscript version of 1 November 2026.</p><p class="design-credit">Layout inspired by the <a href="https://odesign1.github.io/" target="_blank" rel="noopener">ODesign project page</a>.</p></div></footer>
 <dialog id="figure-dialog" aria-labelledby="dialog-caption"><div class="dialog-toolbar"><h2 id="dialog-caption"></h2><a id="original-figure" href="assets/overview.webp" target="_blank" rel="noopener">Open image ↗</a><button type="button" id="close-dialog" aria-label="Close figure"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div><div class="dialog-image"><img id="dialog-img" alt=""></div></dialog>
 </body></html>
