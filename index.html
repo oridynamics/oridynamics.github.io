@@ -14,8 +14,12 @@
 <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png?v=oridynamic-v6-1">
 <link rel="icon" type="image/svg+xml" sizes="any" href="assets/favicon-oridynamic-v6.svg?v=oridynamic-v6-1">
 <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon-180.png?v=oridynamic-v6-1">
-<link rel="stylesheet" href="site.css"><script src="site.js" defer></script>
+<link rel="stylesheet" href="site.css?v=4e7dc900b5e0"><script src="site.js" defer></script>
 </head><body>
+<div class="ambient-background" aria-hidden="true">
+  <div class="ambient-wing ambient-left"></div>
+  <div class="ambient-wing ambient-right"></div>
+</div>
 <a class="skip-link" href="#video">Skip to the video</a>
 <main>
 <div class="intro-screen" id="top">
@@ -27,59 +31,42 @@
   <div class="affiliations"><span><sup>1</sup>Lingang Laboratory, Shanghai, China</span><span><sup>2</sup>Shanghai Jiao Tong University, Shanghai, China</span><span><sup>3</sup>Fudan University, Shanghai, China</span><span><sup>4</sup>Sun Yat-sen University, Guangzhou, China</span></div>
   <p class="author-note">* Equal contribution &nbsp; · &nbsp; † Corresponding authors</p>
   <div class="paper-links">
-    <button class="pill" type="button" disabled title="Link will be available later"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M6 3h8l4 4v14H6V3Zm8 0v5h4M9 12h6M9 16h6"/></svg> Technical Report</button>
-    <button class="pill" type="button" disabled title="Link will be available later"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="m8 7-5 5 5 5m8-10 5 5-5 5M14 4l-4 16"/></svg> Github Code</button>
+    <button class="pill" type="button" disabled title="Link will be available later"><svg fill="currentColor" stroke="none" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M181.9 256.1c-5-16-4.9-46.9-2-46.9 8.4 0 7.6 36.9 2 46.9zm-1.7 47.2c-7.7 20.2-17.3 43.3-28.4 62.7 18.3-7 39-17.2 62.9-21.9-12.7-9.6-24.9-23.4-34.5-40.8zM86.1 428.1c0 .8 13.2-5.4 34.9-40.2-6.7 6.3-29.1 24.5-34.9 40.2zM248 160h136v328c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V24C0 10.7 10.7 0 24 0h200v136c0 13.2 10.8 24 24 24zm-8 171.8c-20-12.2-33.3-29-42.7-53.8 4.5-18.5 11.6-46.6 6.2-64.2-4.7-29.4-42.4-26.5-47.8-6.8-5 18.3-.4 44.1 8.1 77-11.6 27.6-28.7 64.6-40.8 85.8-.1 0-.1.1-.2.1-27.1 13.9-73.6 44.5-54.5 68 5.6 6.9 16 10 21.5 10 17.9 0 35.7-18 61.1-61.8 25.8-8.5 54.1-19.1 79-23.2 21.7 11.8 47.1 19.5 64 19.5 29.2 0 31.2-32 19.7-43.4-13.9-13.6-54.3-9.7-73.6-7.2zM377 105L279 7c-4.5-4.5-10.6-7-17-7h-6v128h128v-6.1c0-6.3-2.5-12.4-7-16.9zm-74.1 255.3c4.1-2.7-2.5-11.9-42.8-9 37.1 15.8 42.8 9 42.8 9z"/></svg><span>Technical Report</span></button>
+    <a class="pill" href="https://github.com/JiahaoYoung0520/oridynamic_test?tab=readme-ov-file" target="_blank" rel="noopener noreferrer"><svg fill="currentColor" stroke="none" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg><span>Github Code</span></a>
   </div>
+  <p class="hero-slogan"><span>Understanding biomolecular dynamics</span>
+    <span>is a key step toward biological intelligence.</span></p>
 </div></header>
 </div>
 
 <section class="video-section reading-width" id="video" aria-label="Project video">
   <figure class="video-figure">
     <div class="video-frame">
-      <video id="project-video" controls playsinline muted loop preload="metadata" width="1920" height="1080" poster="assets/video-poster.jpg" aria-label="OriDynamic molecular ensemble examples">
-        <source src="assets/oridynamic-three-cases.mp4" type="video/mp4">
-        Your browser does not support embedded video. <a href="assets/oridynamic-three-cases.mp4">Open the MP4 video</a>.
+      <video id="project-video" controls playsinline loop preload="metadata" width="1920" height="1080" poster="assets/video-v12-poster.jpg" aria-label="OriDynamic — Toward biological intelligence">
+        <source src="assets/oridynamic-v12.mp4" type="video/mp4">
+        Your browser does not support embedded video. <a href="assets/oridynamic-v12.mp4">Open the MP4 video</a>.
       </video>
     </div>
   </figure>
 </section>
 
 <section class="section section-soft" id="abstract"><div class="reading-width">
-  <h2>Abstract</h2><p class="abstract-text">Biomolecular function depends on both alternative structural states and atomic fluctuations within each state. OriDynamic organizes these two levels of variability through latent ensemble decomposition. A structural autoencoder learns a continuous representation, a flow module samples representative conformations across basins, and a conditional refinement module explores all-atom variability within them. Ensemble-level objectives constrain mean positions, fluctuation amplitudes and joint coordinate covariance. A jointly trained model supports protein monomers, protein–ligand complexes and protein–protein assemblies, with evaluation across four public ensemble benchmarks. Application studies examine alternative experimental states and partner-dependent apo and holo conformations. A separately adapted model is evaluated on ligand-dissociation-related configurations. OriDynamic produces time-independent structural ensembles that can support testable hypotheses about molecular recognition and function.</p>
+  <h2>Abstract</h2><p class="abstract-text">Molecular recognition, catalysis and biological regulation are shaped by the coordinated conformational dynamics of interacting biomolecules. Learning the joint organization of alternative conformational states and their associated atomic fluctuations remains a central challenge. We present OriDynamic, a unified generative framework for all-atom conformational ensembles of protein monomers, protein–ligand complexes and protein–protein assemblies. OriDynamic integrates global exploration and local exploitation of conformational space through latent ensemble decomposition guided by ensemble-level statistical supervision. Across these systems, OriDynamic improves agreement with reference fluctuation statistics and conformational distributions, while recovering experimentally observed alternative states alongside partner-dependent structural responses, with an extension for sampling configurations associated with ligand dissociation. By enabling systematic exploration of conformational variability, OriDynamic provides a dynamical foundation for AI-driven drug discovery and marks a step toward biological intelligence grounded in the dynamic biomolecular world.</p>
 </div></section>
 
 <section class="overview-section reading-width" id="overview" aria-labelledby="overview-title">
   <h2 id="overview-title">Overview</h2>
   <figure class="research-figure">
       <button class="figure-button" type="button" data-figure="assets/overview.webp" data-title="OriDynamic overview" aria-label="Enlarge OriDynamic overview">
-        <img src="assets/overview.webp" width="2600" height="2046" alt="Latent ensemble decomposition connects molecular context to representative states across conformational basins and all-atom variability within each state. The complete overview shows the molecular inputs, framework, ensemble-level supervision and sampling strategy." loading="lazy" decoding="async" >
+        <img src="assets/overview.webp" width="2600" height="2046" alt="OriDynamic generates all-atom conformational ensembles across protein monomers, protein–ligand complexes and protein–protein assemblies within a unified framework." loading="lazy" decoding="async" >
         <span class="enlarge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/></svg> View full size</span>
       </button>
-      <figcaption><strong>OriDynamic overview.</strong> Latent ensemble decomposition connects molecular context to representative states across conformational basins and all-atom variability within each state. The complete overview shows the molecular inputs, framework, ensemble-level supervision and sampling strategy.</figcaption>
+      <figcaption>OriDynamic generates all-atom conformational ensembles across protein monomers, protein–ligand complexes and protein–protein assemblies within a unified framework.</figcaption>
     </figure>
 </section>
 
 <section class="section" id="highlights"><div class="reading-width">
-  <h2>Highlights</h2><ul class="highlights"><li><strong>Across basins. Within states.</strong> Latent flow samples representative conformations; conditional all-atom refinement explores variability around them.</li><li><strong>Learn the ensemble statistics</strong> Mean positions, fluctuation amplitudes and trace-normalized joint covariance guide the final generated ensemble.</li><li><strong>One framework, multiple molecular contexts</strong> A jointly trained model supports protein monomers, protein–ligand complexes and protein–protein assemblies.</li><li><strong>From alternative states to molecular interactions</strong> Application studies examine experimental state recovery, partner-dependent responses and dissociation-related ligand configurations.</li></ul>
-</div></section>
-
-<section class="section section-soft" id="architecture"><div class="reading-width">
-  <h2>Architecture</h2>
-  <p class="section-intro">Representative states across basins. Atomic fluctuations within them.</p>
-  <figure class="research-figure">
-      <button class="figure-button" type="button" data-figure="assets/method.webp" data-title="Architecture" aria-label="Enlarge Architecture">
-        <img src="assets/method.webp" width="2600" height="640" alt="Molecular context conditions structural encoding, latent generation, decoding and all-atom refinement." loading="lazy" decoding="async" >
-        <span class="enlarge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/></svg> View full size</span>
-      </button>
-      <figcaption><strong>Architecture.</strong> Molecular context conditions structural encoding, latent generation, decoding and all-atom refinement.</figcaption>
-    </figure>
-  <div class="method-copy reading-width">
-    <h3>1. Structural autoencoder</h3><p>A continuous structural representation connects molecular conformations to a latent space and reconstructs them as atomic coordinates.</p>
-    <h3>2. Latent flow</h3><p>Conditioned on molecular context, the flow module generates representative conformations across different structural basins.</p>
-    <h3>3. Conditional all-atom refinement</h3><p>Refinement samples variability around each representative conformation while improving local atomic geometry.</p>
-    <h3>Ensemble-level supervision</h3><p>Mean atomic positions, fluctuation amplitudes and trace-normalized joint coordinate covariance guide the generated ensemble. Statistics are evaluated on selected representative atoms: protein Cα and ligand heavy atoms.</p>
-    <p class="research-note">OriDynamic generates time-independent structural ensembles. Sample order does not represent physical time, transition rates or a molecular trajectory.</p>
-  </div>
+  <h2>Highlights</h2><ul class="highlights"><li><strong>Unified multimodal ensemble generation</strong><p>A single model generates conformational ensembles across protein monomers, protein–ligand complexes, and protein–protein assemblies.</p></li><li><strong>From alternative states to local fluctuations</strong><p>Combines latent-space exploration of alternative conformations with conditional all-atom sampling to capture local variability within each state.</p></li><li><strong>Ensemble-level learning of conformational variability</strong><p>Joint supervision of mean atomic positions, fluctuation amplitudes, and coordinate covariance captures how atoms fluctuate individually and together.</p></li><li><strong>Strong ensemble fidelity across benchmarks</strong><p>Achieves leading flexibility correlations across four benchmarks, alongside strong agreement with reference conformational distributions and interaction geometry.</p></li><li><strong>Functional conformations and partner-dependent responses</strong><p>Recovers experimentally observed alternative states and captures shifts in apo–holo conformational distributions in response to ligand or protein partners.</p></li></ul>
 </div></section>
 
 <section class="section" id="performance"><div class="container">
@@ -87,24 +74,24 @@
   <article class="result-block"><h3>Protein monomers</h3>
       <figure class="research-figure">
       <button class="figure-button" type="button" data-figure="assets/benchmarks.webp" data-title="Protein monomer ensembles" aria-label="Enlarge Protein monomer ensembles">
-        <img src="assets/benchmarks.webp" width="2600" height="2409" alt="Protein monomer ensemble fidelity on ATLAS and mdCATH." loading="lazy" decoding="async" >
+        <img src="assets/benchmarks.webp" width="2600" height="2409" alt="OriDynamic reproduces protein flexibility, conformational distributions and ensemble observables across the ATLAS and mdCATH benchmarks." loading="lazy" decoding="async" >
         <span class="enlarge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/></svg> View full size</span>
       </button>
-      <figcaption>Protein monomer ensemble fidelity on ATLAS and mdCATH.</figcaption>
+      <figcaption>OriDynamic reproduces protein flexibility, conformational distributions and ensemble observables across the ATLAS and mdCATH benchmarks.</figcaption>
     </figure></article><article class="result-block"><h3>Protein–ligand complexes</h3>
       <figure class="research-figure">
       <button class="figure-button" type="button" data-figure="assets/ligand-benchmarks.webp" data-title="Protein–ligand ensembles" aria-label="Enlarge Protein–ligand ensembles">
-        <img src="assets/ligand-benchmarks.webp" width="2600" height="2765" alt="Protein–ligand ensemble fidelity on MISATO. Structural examples illustrate selected cases." loading="lazy" decoding="async" >
+        <img src="assets/ligand-benchmarks.webp" width="2600" height="2765" alt="OriDynamic captures protein and ligand flexibility alongside binding-pocket variability and molecular interaction patterns on MISATO." loading="lazy" decoding="async" >
         <span class="enlarge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/></svg> View full size</span>
       </button>
-      <figcaption>Protein–ligand ensemble fidelity on MISATO. Structural examples illustrate selected cases.</figcaption>
+      <figcaption>OriDynamic captures protein and ligand flexibility alongside binding-pocket variability and molecular interaction patterns on MISATO.</figcaption>
     </figure></article><article class="result-block"><h3>Protein–protein assemblies</h3>
       <figure class="research-figure">
       <button class="figure-button" type="button" data-figure="assets/ppi-benchmarks.webp" data-title="Protein–protein ensembles" aria-label="Enlarge Protein–protein ensembles">
-        <img src="assets/ppi-benchmarks.webp" width="2600" height="2363" alt="Protein–protein ensemble fidelity on DynaRepo-PPI. Structural examples illustrate selected cases." loading="lazy" decoding="async" >
+        <img src="assets/ppi-benchmarks.webp" width="2600" height="2363" alt="OriDynamic captures whole-complex flexibility and interface fluctuations in protein–protein assemblies from DynaRepo-PPI." loading="lazy" decoding="async" >
         <span class="enlarge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/></svg> View full size</span>
       </button>
-      <figcaption>Protein–protein ensemble fidelity on DynaRepo-PPI. Structural examples illustrate selected cases.</figcaption>
+      <figcaption>OriDynamic captures whole-complex flexibility and interface fluctuations in protein–protein assemblies from DynaRepo-PPI.</figcaption>
     </figure></article>
 </div></section>
 
@@ -113,18 +100,18 @@
   <article class="result-block"><h3>Alternative states and partner-dependent responses</h3>
       <figure class="research-figure">
       <button class="figure-button" type="button" data-figure="assets/applications.webp" data-title="Alternative states and partner-dependent responses" aria-label="Enlarge Alternative states and partner-dependent responses">
-        <img src="assets/applications.webp" width="2600" height="3260" alt="Recovery of alternative experimental conformations on ConforMix and structural responses to ligand or protein partners on ProMiSE." loading="lazy" decoding="async" >
+        <img src="assets/applications.webp" width="2600" height="3260" alt="OriDynamic recovers alternative experimental conformations and structural responses to ligand or protein partners across ConforMix and ProMiSE." loading="lazy" decoding="async" >
         <span class="enlarge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/></svg> View full size</span>
       </button>
-      <figcaption>Recovery of alternative experimental conformations on ConforMix and structural responses to ligand or protein partners on ProMiSE.</figcaption>
-    </figure><details class="evaluation-note"><summary>Evaluation details</summary><p><strong>ConforMix.</strong> For each reference state, success requires a sample with TM-score > 0.8 that is closer to that state than to the opposite state. Selected structural illustrations use separate 1,000-sample ensembles.</p><p><strong>ProMiSE.</strong> The displayed success rate weights clusters equally. Pair-weighted success is 45.4% (ESMFold2: 49.6%). Rankings depend on weighting and the reference-scoring policy described in the manuscript.</p></details></article><article class="result-block"><h3>Dissociation-related ligand configurations</h3>
+      <figcaption>OriDynamic recovers alternative experimental conformations and structural responses to ligand or protein partners across ConforMix and ProMiSE.</figcaption>
+    </figure></article><article class="result-block"><h3>Dissociation-related ligand configurations</h3>
       <figure class="research-figure">
       <button class="figure-button" type="button" data-figure="assets/interactions.webp" data-title="Ligand configurations and interactions" aria-label="Enlarge Ligand configurations and interactions">
-        <img src="assets/interactions.webp" width="2600" height="3151" alt="Ligand configurations and interaction distributions on DD-13M, using the separately adapted model." loading="lazy" decoding="async" >
+        <img src="assets/interactions.webp" width="2600" height="3151" alt="Adapted to ligand dissociation, OriDynamic samples diverse protein–ligand configurations and captures associated changes in molecular interactions on DD-13M." loading="lazy" decoding="async" >
         <span class="enlarge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/></svg> View full size</span>
       </button>
-      <figcaption>Ligand configurations and interaction distributions on DD-13M, using the separately adapted model.</figcaption>
-    </figure><details class="evaluation-note"><summary>Evaluation details</summary><p>Uses a separately adapted model. Precision at 2 Å is 66.3% (BioKinema: 95.5%). Samples describe configurations and distributions, not dissociation trajectories, transition times or rates.</p></details></article>
+      <figcaption>Adapted to ligand dissociation, OriDynamic samples diverse protein–ligand configurations and captures associated changes in molecular interactions on DD-13M.</figcaption>
+    </figure></article>
 </div></section>
 
 <section class="section citation-section" id="citation"><div class="reading-width">
@@ -138,6 +125,6 @@
 }</pre><p id="copy-status" role="status" aria-live="polite"></p></div>
 </div></section>
 </main>
-<footer><div class="reading-width"><a class="footer-top" href="#top">Back to top ↑</a><p>© 2026 LGLab Frontier AI Group · OriDynamic</p><p>Figures from the manuscript version of 1 November 2026.</p><p class="design-credit">Layout inspired by the <a href="https://odesign1.github.io/" target="_blank" rel="noopener">ODesign project page</a>.</p></div></footer>
+<footer><div class="reading-width"><a class="footer-top" href="#top">Back to top ↑</a><p>© 2026 LGLab Frontier AI Group · OriDynamic</p><p>Figures from the manuscript version of 1 November 2026.</p><p class="design-credit">Layout inspired by the <a href="https://odesign1.github.io/" target="_blank" rel="noopener">ODesign project page</a>.</p><p class="media-credit">Video music: “<a href="https://www.scottbuckley.com.au/library/discovery/" target="_blank" rel="noopener">Discovery</a>” by Scott Buckley · <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>. Edited excerpt, volume adjusted and fades added.</p></div></footer>
 <dialog id="figure-dialog" aria-labelledby="dialog-caption"><div class="dialog-toolbar"><h2 id="dialog-caption"></h2><a id="original-figure" href="assets/overview.webp" target="_blank" rel="noopener">Open image ↗</a><button type="button" id="close-dialog" aria-label="Close figure"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div><div class="dialog-image"><img id="dialog-img" alt=""></div></dialog>
 </body></html>

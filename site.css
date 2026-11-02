@@ -8,10 +8,19 @@
   --line: #e2e6ee;
   --width: 1120px;
   --section-heading: 34px;
+  --ambient-opacity: .25;
 }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: 24px; }
-body { margin: 0; background: #fff; color: var(--text); font-family: Arial, Helvetica, sans-serif; font-size: 17px; line-height: 1.75; -webkit-font-smoothing: antialiased; }
+body { margin: 0; background: #fff; color: var(--text); font-family: Arial, Helvetica, sans-serif; font-size: 17px; line-height: 1.75; -webkit-font-smoothing: antialiased; isolation: isolate; }
+/* Still frames stay attached to the viewport and outside the widest content column. */
+.ambient-background { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; user-select: none; }
+.ambient-wing { position: absolute; top: 0; bottom: 0; width: max(0px, calc((100% - var(--width)) / 2 - 24px)); opacity: var(--ambient-opacity); background-repeat: no-repeat; background-size: cover; }
+.ambient-left { left: 0; background-image: url('assets/ambient-left.webp'); background-position: left center; -webkit-mask-image: linear-gradient(to right, #000 0%, #000 20%, rgba(0,0,0,.7) 48%, transparent 100%); mask-image: linear-gradient(to right, #000 0%, #000 20%, rgba(0,0,0,.7) 48%, transparent 100%); }
+.ambient-right { right: 0; background-image: url('assets/ambient-right.webp'); background-position: right center; -webkit-mask-image: linear-gradient(to left, #000 0%, #000 20%, rgba(0,0,0,.7) 48%, transparent 100%); mask-image: linear-gradient(to left, #000 0%, #000 20%, rgba(0,0,0,.7) 48%, transparent 100%); }
+main, footer { position: relative; z-index: 1; }
+@media (max-width: 1279px) { .ambient-background { display: none; } }
+@media print { .ambient-background { display: none; } }
 h1, h2, h3, p, figure { margin: 0; }
 h1, h2, h3 { color: var(--blue); line-height: 1.23; }
 a { color: var(--blue); text-decoration: none; }
@@ -28,11 +37,14 @@ sup { font-size: .7em; line-height: 0; vertical-align: super; margin-left: 1px; 
 .skip-link:focus { top: 12px; }
 
 /* Basic information occupies the first viewport; the video follows on scroll. */
-.intro-screen { min-height: 100vh; min-height: 100svh; display: grid; align-items: center; padding: clamp(28px, 5svh, 64px) 0; background: #fff; }
-.paper-header { --intro-group-gap: clamp(32px, 5.5svh, 48px); width: 100%; text-align: center; background: #fff; }
+.intro-screen { min-height: 100vh; min-height: 100svh; display: grid; align-items: center; padding: clamp(28px, 5svh, 64px) 0; }
+.paper-header { --intro-group-gap: clamp(32px, 5.5svh, 48px); width: 100%; text-align: center; }
 .wordmark { display: block; position: relative; width: min(320px, 100%); aspect-ratio: 1835 / 385; margin: 0 auto 28px; overflow: hidden; }
 .wordmark:hover { text-decoration: none; }
 .wordmark img { position: absolute; width: 108.0654%; max-width: none; height: auto; left: -4.3597%; top: -48.0519%; }
+.hero-slogan { margin: clamp(24px, 3.5svh, 40px) auto 0; font-size: clamp(16px, 1.25vw, 18px); line-height: 1.5; font-weight: 400; color: var(--blue); }
+.hero-slogan span { display: inline; }
+.hero-slogan span:last-child { color: var(--purple); }
 h1 { color: var(--ink); font-size: clamp(32px, 3.4vw, 46px); line-height: 1.23; font-weight: 750; letter-spacing: -1px; max-width: 1100px; margin: auto; }
 .group-author { font-size: 20px; font-weight: 600; line-height: 1.5; color: var(--blue); margin-top: var(--intro-group-gap); }
 .contributors { font-size: 14px; line-height: 1.95; margin: var(--intro-group-gap) auto 0; color: #515967; }
@@ -42,12 +54,12 @@ h1 { color: var(--ink); font-size: clamp(32px, 3.4vw, 46px); line-height: 1.23; 
 .affiliations > span { display: inline-block; white-space: nowrap; }
 .affiliations sup { margin-right: 3px; }
 .author-note { font-size: 11px; color: var(--muted); margin-top: 18px; line-height: 1.6; }
-.paper-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: var(--intro-group-gap); }
-.pill { display: inline-flex; align-items: center; gap: 7px; background: var(--ink); color: #fff; padding: 9px 20px; border: 0; border-radius: 30px; font-size: 14px; line-height: 1.5; transition: background .15s, transform .15s; }
+.paper-links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); width: min(380px, 100%); gap: 10px; margin: var(--intro-group-gap) auto 0; }
+.pill { display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: 100%; min-width: 0; min-height: 44px; white-space: nowrap; background: var(--ink); color: #fff; padding: 9px 20px; border: 0; border-radius: 30px; font-size: 14px; line-height: 1.5; transition: background .15s, transform .15s; }
 .pill:not(:disabled):hover { background: var(--purple); text-decoration: none; transform: translateY(-1px); }
 .pill:disabled { cursor: default; opacity: 1; -webkit-text-fill-color: currentColor; }
-.pill svg { width: 16px; height: 16px; }
-.video-section { padding-block: 48px 24px; }
+.pill svg { width: 18px; height: 18px; }
+.video-section { --video-pad: clamp(24px, 4svh, 48px); min-height: 100vh; min-height: 100svh; min-height: 100dvh; display: grid; align-items: center; padding-block: var(--video-pad); }
 .video-figure { width: 100%; }
 .video-frame { width: 100%; margin-inline: auto; aspect-ratio: 16 / 9; border: 1px solid var(--line); border-radius: 9px; overflow: hidden; background: #fff; }
 .video-frame video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: contain; background: #fff; }
@@ -57,7 +69,8 @@ h1 { color: var(--ink); font-size: clamp(32px, 3.4vw, 46px); line-height: 1.23; 
 h2 { font-size: var(--section-heading); font-weight: 700; text-align: center; letter-spacing: -.7px; margin-bottom: 38px; }
 h3 { font-size: 24px; letter-spacing: -.35px; font-weight: 650; }
 .section { padding: 88px 0; }
-.section-soft { background: #fff; }
+#abstract { padding-top: clamp(160px, 20svh, 260px); }
+.section-soft { background: transparent; }
 .overview-section { padding-block: 48px; }
 .research-figure { margin: 0; width: 100%; }
 .figure-button { display: block; position: relative; width: 100%; padding: 0; border: 0; background: #fff; cursor: zoom-in; border-radius: 5px; }
@@ -75,28 +88,21 @@ figcaption strong { color: #4d596c; font-weight: 600; }
 .highlights li { padding-left: 7px; margin-bottom: 22px; }
 .highlights li:last-child { margin-bottom: 0; }
 .highlights li::marker { color: var(--purple); }
-.highlights strong { color: var(--ink); }
+.highlights strong { display: block; color: var(--ink); margin-bottom: 6px; }
 .section-intro { text-align: center; margin: -12px auto 40px; max-width: 850px; font-size: 17px; }
-.method-copy { width: min(900px, 100%); padding-top: 42px; }
-.method-copy h3 { margin: 40px 0 16px; }
-.method-copy h3:first-child { margin-top: 0; }
-.method-copy p { font-size: 16px; line-height: 1.85; }
-.research-note { margin-top: 32px; border-left: 3px solid #b8a7d5; padding: 13px 18px; background: #fff; color: #625779; }
 .result-block { padding-top: 58px; margin-top: 58px; }
 .result-block:first-of-type { margin-top: 0; padding-top: 14px; }
 .result-block h3 { text-align: center; margin-bottom: 32px; }
 .result-block .research-figure { max-width: 1000px; margin-inline: auto; }
-.evaluation-note { font-size: 13px; max-width: 900px; margin: 24px auto 0; padding-top: 14px; }
-.evaluation-note summary { cursor: pointer; color: var(--blue); width: fit-content; }
-.evaluation-note p { margin-top: 8px; line-height: 1.8; }
 .citation-box { position: relative; border-radius: 6px; background: #fff; border: 1px solid var(--line); padding: 49px 25px 22px; }
 .citation-box pre { margin: 0; font: 13px/1.8 ui-monospace, SFMono-Regular, Consolas, monospace; color: #46536a; overflow-x: auto; }
 .citation-box button { position: absolute; right: 15px; top: 12px; display: flex; align-items: center; gap: 7px; background: #fff; border: 1px solid var(--line); border-radius: 5px; font-size: 11px; padding: 6px 10px; }
 .citation-box button svg { width: 14px; height: 14px; }
 #copy-status:not(:empty) { font-size: 12px; color: var(--blue); margin-top: 10px; }
-footer { text-align: center; background: #fff; padding: 32px 0 36px; font-size: 12px; color: var(--muted); }
+footer { text-align: center; padding: 32px 0 36px; font-size: 12px; color: var(--muted); }
 .footer-top { display: inline-block; margin-bottom: 13px; }
 .design-credit { margin-top: 10px; font-size: 11px; }
+.media-credit { margin-top: 6px; font-size: 11px; }
 
 /* Figure viewer controls retain their own compact type scale. */
 dialog { width: min(1450px, 96vw); max-height: 95vh; border: 1px solid var(--line); border-radius: 8px; padding: 0; background: #fff; box-shadow: 0 25px 100px #13234540; }
@@ -115,12 +121,22 @@ body.dialog-open { overflow: hidden; }
   .contributors { font-size: 15px; }
   .affiliations { font-size: 13px; }
 }
+/* Keep the complete video visible on short desktop / landscape screens. */
+@media (max-height: 620px) {
+  .video-frame { width: min(100%, calc((100svh - 2 * var(--video-pad) - 2px) * 16 / 9)); }
+}
+@media (min-width: 761px) and (max-height: 680px) {
+  .intro-screen { padding-block: 24px; }
+  .paper-header { --intro-group-gap: 22px; }
+  .wordmark { width: 280px; margin-bottom: 14px; }
+  .hero-slogan { font-size: 16px; margin: 24px auto 0; }
+}
 @media (max-width: 760px) {
   :root { --section-heading: 28px; }
   .container, .reading-width { width: calc(100% - 36px); }
   .intro-screen { padding-block: 32px; }
   .wordmark { width: min(280px, 100%); margin-bottom: 26px; }
-  .video-section { padding-block: 32px 20px; }
+  .hero-slogan { font-size: 14px; margin: 24px auto 0; }
   h1 { font-size: 32px; letter-spacing: -.6px; line-height: 1.22; }
   .title-break { display: none; }
   .paper-header { --intro-group-gap: clamp(28px, 4.5svh, 36px); }
@@ -136,9 +152,6 @@ body.dialog-open { overflow: hidden; }
   .abstract-text { text-align: left; font-size: 16px; line-height: 1.8; }
   .highlights { font-size: 16px; padding-left: 20px; }
   .section-intro { font-size: 16px; margin-top: -8px; margin-bottom: 32px; }
-  .method-copy { width: 100%; padding-top: 32px; }
-  .method-copy p { font-size: 15px; }
-  .research-note { padding: 12px 14px; }
   .result-block { padding-top: 44px; margin-top: 44px; }
   .result-block h3 { margin-bottom: 28px; }
   .enlarge { opacity: 1; font-size: 10px; padding: 4px 6px; right: 5px; bottom: 5px; }
