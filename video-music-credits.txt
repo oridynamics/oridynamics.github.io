@@ -1,0 +1,28 @@
+OriDynamic homepage video — music attribution
+
+Music: 'Discovery' by Scott Buckley — released under CC-BY 4.0.
+www.scottbuckley.com.au
+
+Track source: https://www.scottbuckley.com.au/library/discovery/
+Artist: https://www.scottbuckley.com.au/
+License: Creative Commons Attribution 4.0 International (CC BY 4.0)
+License terms: https://creativecommons.org/licenses/by/4.0/
+Legal code: https://creativecommons.org/licenses/by/4.0/legalcode.en
+Author's usage instructions: https://www.scottbuckley.com.au/library/using-this-music/
+Verified: 2026-11-05
+
+Use and changes: A music excerpt is synchronized to this 30-second video.
+The website retains the supplied video's original audio and video without
+transcoding. This attribution applies to the music; it does not license the
+entire OriDynamic video or website under CC BY 4.0. No endorsement is implied.
+
+The official track page permits use in projects, including commercial
+projects, with attribution. Keep the track title, artist, source and license
+links, and the indication of synchronization with the published video.
+
+For future YouTube publication, the author specifically requests attribution
+in the video description. Keep this credit with any separately shared copy.
+
+Current website video: assets/oridynamic-homepage.mp4
+Source filename: OriDynamic_homepage.mp4
+Video SHA-256: 374530239abddc65623608e35ec7593d1eb27e9b9708d093920281946ac6df2f
