@@ -3,7 +3,7 @@
   const videos = Array.from(document.querySelectorAll('video'));
   const playback = new Map(videos.map(video => [video, {
     userPaused: false, internalPause: false, pending: false,
-    blocked: false, hasPlayed: false, automatic: false,
+    blocked: false, hasPlayed: false, automatic: false, retries: 0, scrubbing: false,
   }]));
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   let activeVideo = null;
@@ -30,6 +30,8 @@
       return;
     }
     const height = window.innerHeight;
+    // A seek gesture owns the player until the pointer is released.
+    if (videos.some(video => playback.get(video).scrubbing)) return;
     const expanded = document.fullscreenElement || document.querySelector('.application-player.is-expanded');
     const visible = videos.map(video => {
       const rect = video.getBoundingClientRect();
@@ -46,6 +48,7 @@
       centerCandidate = centered;
       centerSince = performance.now();
       centerAttempted = false;
+      if (centered) playback.get(centered).retries = 0;
       clearTimeout(centerTimer);
       // Avoid briefly starting every video during a quick scroll past them.
       if (centered) centerTimer = setTimeout(queuePlaybackCheck, 200);
@@ -65,8 +68,17 @@
     // Muting the first automatic start satisfies browser autoplay policies.
     // A visitor's later audio choice is retained when returning to the video.
     if (!state.hasPlayed) centered.muted = true;
-    centered.play().catch(error => {
-      if (error.name !== 'AbortError') state.blocked = true;
+    centered.play().then(() => { state.retries = 0; }).catch(error => {
+      if (error.name === 'AbortError' && centerCandidate === centered && !state.userPaused && state.retries < 3) {
+        // Loading or a rapid scroll can interrupt play(). Retry without requiring another scroll.
+        clearTimeout(centerTimer);
+        centerAttempted = true;
+        centerTimer = setTimeout(() => {
+          if (centerCandidate !== centered) return;
+          centerAttempted = false;
+          queuePlaybackCheck();
+        }, 500 * ++state.retries);
+      } else if (error.name !== 'AbortError') state.blocked = true;
       // Keep the normal play button available if autoplay is denied.
     }).finally(() => {
       state.pending = false;
@@ -83,9 +95,9 @@
     const video = player.querySelector('video');
     const controls = player.querySelector('.application-controls');
     const play = player.querySelector('[data-play]');
-    const mute = player.querySelector('[data-mute]');
     const fullscreen = player.querySelector('[data-fullscreen]');
     const seek = player.querySelector('[data-seek]');
+    const state = playback.get(video);
     const time = player.querySelector('[data-time]');
     const status = player.querySelector('.application-playback-status');
     const label = player.dataset.label;
@@ -100,6 +112,7 @@
       if (hadFocus) video.focus({ preventScroll: true });
     };
     let hideControlsTimer;
+    let pointerLeaveTimer;
     let touchingControls = false;
     const revealTouchControls = () => {
       clearTimeout(hideControlsTimer);
@@ -109,10 +122,17 @@
       }
     };
     player.addEventListener('pointerenter', event => {
-      if (event.pointerType === 'mouse') player.classList.add('pointer-active');
+      if (event.pointerType === 'mouse') {
+        clearTimeout(pointerLeaveTimer);
+        player.classList.add('pointer-active');
+      }
     });
     player.addEventListener('pointerleave', event => {
-      if (event.pointerType === 'mouse') player.classList.remove('pointer-active');
+      if (event.pointerType === 'mouse') {
+        clearTimeout(pointerLeaveTimer);
+        // Allow a brief move away from the video without losing its controls.
+        pointerLeaveTimer = setTimeout(() => player.classList.remove('pointer-active'), 1000);
+      }
     });
     player.addEventListener('pointerdown', event => {
       if (event.pointerType !== 'mouse') {
@@ -131,7 +151,8 @@
     document.addEventListener('pointerdown', event => {
       if (!player.contains(event.target)) {
         clearTimeout(hideControlsTimer);
-        player.classList.remove('controls-visible');
+        clearTimeout(pointerLeaveTimer);
+        player.classList.remove('controls-visible', 'pointer-active');
       }
     });
     ['play', 'pause'].forEach(name => video.addEventListener(name, () => {
@@ -142,6 +163,7 @@
       return `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, '0')}`;
     };
     const updateTime = () => {
+      if (state.scrubbing) return;
       const loadedDuration = Number.isFinite(video.duration) ? video.duration : 0;
       const duration = loadedDuration || Number(video.dataset.duration) || 0;
       seek.disabled = !loadedDuration;
@@ -156,13 +178,6 @@
       play.title = paused ? 'Play' : 'Pause';
       player.querySelector('[data-play-icon]').hidden = !paused;
       player.querySelector('[data-pause-icon]').hidden = paused;
-    };
-    const updateMute = () => {
-      const muted = video.muted || video.volume === 0;
-      mute.setAttribute('aria-label', `${muted ? 'Unmute' : 'Mute'} ${label} video`);
-      mute.title = muted ? 'Unmute' : 'Mute';
-      player.querySelector('[data-muted-icon]').hidden = !muted;
-      player.querySelector('[data-sound-icon]').hidden = muted;
     };
     const togglePlay = async () => {
       status.hidden = true;
@@ -181,11 +196,32 @@
         togglePlay();
       }
     });
-    mute.addEventListener('click', () => {
-      if (video.volume === 0) { video.volume = 1; video.muted = false; }
-      else video.muted = !video.muted;
+    seek.addEventListener('pointerdown', event => {
+      if (event.button !== 0 || seek.disabled) return;
+      state.scrubbing = true;
+      clearTimeout(hideControlsTimer);
+      clearTimeout(pointerLeaveTimer);
+      player.classList.add('is-scrubbing');
+      seek.setPointerCapture(event.pointerId);
     });
-    seek.addEventListener('input', () => { video.currentTime = Number(seek.value); });
+    seek.addEventListener('input', () => {
+      const target = Number(seek.value);
+      seek.setAttribute('aria-valuetext', `${formatTime(target)} of ${formatTime(Number(seek.max))}`);
+      time.textContent = `${formatTime(target)} / ${formatTime(Number(seek.max))}`;
+      // Preview the target while dragging; seek once on release. Keyboard seeks remain immediate.
+      if (!state.scrubbing) video.currentTime = target;
+    });
+    const finishSeek = commit => {
+      if (!state.scrubbing) return;
+      if (commit) video.currentTime = Number(seek.value);
+      state.scrubbing = false;
+      player.classList.remove('is-scrubbing');
+      updateTime();
+      queuePlaybackCheck();
+    };
+    seek.addEventListener('pointerup', () => finishSeek(true));
+    seek.addEventListener('pointercancel', () => finishSeek(false));
+    seek.addEventListener('lostpointercapture', () => finishSeek(true));
     const updateFullscreen = () => {
       const expanded = document.fullscreenElement === player || player.classList.contains('is-expanded');
       fullscreen.setAttribute('aria-label', `${expanded ? 'Exit full screen' : 'Full screen'} ${label} video`);
@@ -218,9 +254,8 @@
     });
     ['loadedmetadata', 'durationchange', 'timeupdate', 'seeked'].forEach(name => video.addEventListener(name, updateTime));
     ['play', 'pause', 'ended'].forEach(name => video.addEventListener(name, updatePlay));
-    video.addEventListener('volumechange', updateMute);
     video.addEventListener('error', () => { status.hidden = false; });
-    updateTime(); updatePlay(); updateMute();
+    updateTime(); updatePlay();
     controls.hidden = false;
     video.controls = false;
     if (preview) {
@@ -346,9 +381,15 @@
     });
     video.addEventListener('pause', () => {
       if (state.internalPause) state.internalPause = false;
-      else state.userPaused = true;
+      else if (video.id === 'project-video') state.userPaused = true;
+      else if (!state.userPaused && !state.pending) {
+        // Only the explicit case play/pause controls mark a deliberate pause.
+        // Browser interruptions should not permanently disable scroll autoplay.
+        centerAttempted = false;
+        queuePlaybackCheck();
+      }
     });
-    video.addEventListener('loadedmetadata', queuePlaybackCheck);
+    ['loadedmetadata', 'canplay'].forEach(name => video.addEventListener(name, queuePlaybackCheck));
     video.addEventListener('webkitbeginfullscreen', () => { activeVideo = video; });
     video.addEventListener('webkitendfullscreen', queuePlaybackCheck);
   });

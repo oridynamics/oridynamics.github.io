@@ -44,10 +44,11 @@ sup { font-size: .7em; line-height: 0; vertical-align: super; margin-left: 1px; 
 .wordmark { display: block; position: relative; width: min(320px, 100%); aspect-ratio: 1835 / 385; margin: 0 auto 28px; overflow: hidden; }
 .wordmark:hover { text-decoration: none; }
 .wordmark img { position: absolute; width: 108.0654%; max-width: none; height: auto; left: -4.3597%; top: -48.0519%; }
-.hero-slogan { margin: clamp(24px, 3.5svh, 40px) auto 0; font-size: clamp(16px, 1.25vw, 18px); line-height: 1.5; font-weight: 400; color: var(--blue); }
+.hero-slogan { margin: clamp(32px, 4.4svh, 48px) auto 0; font-size: clamp(17px, 1.32vw, 19px); line-height: 1.5; font-weight: 400; color: var(--blue); }
 .hero-slogan span { display: inline; }
 .hero-slogan span:last-child { color: var(--purple); }
-h1 { color: var(--ink); font-size: clamp(32px, 3.4vw, 46px); line-height: 1.23; font-weight: 750; letter-spacing: -1px; max-width: 1100px; margin: auto; }
+h1 { color: var(--ink); font-size: clamp(26px, 3.2vw, 42px); line-height: 1.23; font-weight: 750; letter-spacing: -1px; max-width: 1120px; margin: auto; text-wrap: balance; }
+.title-line { display: block; white-space: nowrap; }
 .contributors { font-size: 14px; line-height: 1.95; margin: var(--intro-group-gap) auto 0; color: #515967; }
 .contributors > span, .author-pair > span { display: inline-block; white-space: nowrap; }
 .contributors > .author-pair { display: block; margin-top: 10px; white-space: nowrap; }
@@ -128,6 +129,7 @@ figcaption strong { color: #4d596c; font-weight: 600; }
 .application-controls { display: flex; align-items: center; gap: 7px; min-height: 44px; margin-top: 8px; color: var(--blue); background: #f6f8fb; border-radius: 6px; padding: 0 5px; opacity: 0; pointer-events: none; transform: translateY(3px); transition: opacity .18s ease, transform .18s ease; }
 .application-player.pointer-active .application-controls,
 .application-player.controls-visible .application-controls,
+.application-player.is-scrubbing .application-controls,
 .using-keyboard .application-player:focus-within .application-controls { opacity: 1; pointer-events: auto; transform: translateY(0); }
 .application-player.has-preview .application-controls { opacity: 0; pointer-events: none; }
 .application-controls [hidden], .application-controls[hidden], .application-playback-status[hidden] { display: none; }
@@ -136,7 +138,7 @@ figcaption strong { color: #4d596c; font-weight: 600; }
 .application-controls button span { display: flex; }
 .application-controls svg { width: 17px; height: 17px; }
 .application-time { white-space: nowrap; font-size: 11px; line-height: 1; font-variant-numeric: tabular-nums; color: #637082; }
-.application-controls input { flex: 1; min-width: 24px; width: 100%; height: 28px; margin: 0 3px; accent-color: var(--blue); cursor: pointer; }
+.application-controls input { flex: 1; min-width: 24px; width: 100%; height: 28px; margin: 0 3px; accent-color: var(--blue); cursor: pointer; touch-action: none; }
 .application-controls input:focus-visible { outline: 3px solid var(--purple); outline-offset: 2px; }
 .application-playback-status { margin-top: 8px; font-size: 12px; }
 .application-video-note { display: flex; align-items: center; justify-content: center; flex: none; min-height: 44px; margin: 8px 0 0; padding: 0 4px; color: #717b8b; font-size: 10px; line-height: 18px; text-align: center; text-wrap: balance; }
@@ -247,16 +249,16 @@ body.dialog-open { overflow: hidden; }
   .intro-screen { padding-block: 24px; }
   .paper-header { --intro-group-gap: 22px; }
   .wordmark { width: 280px; margin-bottom: 14px; }
-  .hero-slogan { font-size: 16px; margin: 24px auto 0; }
+  .hero-slogan { font-size: 17px; margin: 30px auto 0; }
 }
 @media (max-width: 760px) {
   :root { --section-heading: 28px; }
   .container, .reading-width { width: calc(100% - 36px); }
   .intro-screen { padding-block: 32px; }
   .wordmark { width: min(280px, 100%); margin-bottom: 26px; }
-  .hero-slogan { font-size: 14px; margin: 24px auto 0; }
+  .hero-slogan { font-size: 15px; margin: 30px auto 0; }
   h1 { font-size: 32px; letter-spacing: -.6px; line-height: 1.22; }
-  .title-break { display: none; }
+  .title-line { display: inline; white-space: normal; }
   .paper-header { --intro-group-gap: clamp(28px, 4.5svh, 36px); }
   .contributors { font-size: 13px; line-height: 1.95; }
   .affiliations { column-gap: 16px; row-gap: 4px; font-size: 11.5px; }
