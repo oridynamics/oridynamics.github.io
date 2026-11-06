@@ -37,7 +37,9 @@
       const fraction = rect.width > 0 && rect.height > 0 ? visibleHeight / Math.min(rect.height, height) : 0;
       return { video, fraction, distance: Math.abs(rect.top + rect.height / 2 - height / 2) };
     });
-    const centered = visible.filter(item => item.fraction >= .5 && item.distance <= height * .2 &&
+    // The main film starts only on user input; case videos retain scroll autoplay.
+    const centered = visible.filter(item => item.video.id !== 'project-video' &&
+      item.fraction >= .5 && item.distance <= height * .2 &&
       (!expanded || expanded === item.video || expanded.contains(item.video)))
       .sort((a, b) => a.distance - b.distance)[0]?.video;
     if (centered !== centerCandidate) {
