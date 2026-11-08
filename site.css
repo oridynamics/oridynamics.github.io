@@ -8,6 +8,7 @@
   --line: #e2e6ee;
   --width: 1120px;
   --section-heading: 34px;
+  --section-space: 88px;
   --ambient-opacity: .25;
 }
 * { box-sizing: border-box; }
@@ -38,42 +39,42 @@ sup { font-size: .7em; line-height: 0; vertical-align: super; margin-left: 1px; 
 .skip-link { position: absolute; left: 16px; top: -100px; z-index: 10; background: #fff; padding: 8px 15px; }
 .skip-link:focus { top: 12px; }
 
-/* Basic information occupies the first viewport; the video follows on scroll. */
-.intro-screen { min-height: 100vh; min-height: 100svh; display: grid; align-items: center; padding: clamp(28px, 5svh, 64px) 0; }
-.paper-header { --intro-group-gap: clamp(32px, 5.5svh, 48px); width: 100%; text-align: center; }
-.wordmark { display: block; position: relative; width: min(320px, 100%); aspect-ratio: 1835 / 385; margin: 0 auto 28px; overflow: hidden; }
+/* Balance the outer whitespace while keeping the header's internal gaps fixed. */
+.intro-screen { min-height: 100vh; min-height: 100svh; min-height: 100dvh; display: grid; align-items: center; padding: clamp(32px, 5svh, 64px) 0; }
+.paper-header { --intro-group-gap: 48px; width: 100%; text-align: center; }
+.wordmark { display: block; position: relative; width: min(320px, 100%); aspect-ratio: 1901 / 390; margin: 0 auto 34px; overflow: hidden; }
 .wordmark:hover { text-decoration: none; }
-.wordmark img { position: absolute; width: 108.0654%; max-width: none; height: auto; left: -4.3597%; top: -48.0519%; }
-.hero-slogan { margin: clamp(32px, 4.4svh, 48px) auto 0; font-size: clamp(17px, 1.32vw, 19px); line-height: 1.5; font-weight: 400; color: var(--blue); }
+.wordmark img { position: absolute; width: 107.1541%; max-width: none; height: auto; left: -4.1557%; top: -47.6923%; }
+.hero-slogan { margin: 40px auto 0; font-size: clamp(17px, 1.32vw, 19px); line-height: 1.5; font-weight: 400; color: var(--blue); }
 .hero-slogan span { display: inline; }
 .hero-slogan span:last-child { color: var(--purple); }
 h1 { color: var(--ink); font-size: clamp(26px, 3.2vw, 42px); line-height: 1.23; font-weight: 750; letter-spacing: -1px; max-width: 1120px; margin: auto; text-wrap: balance; }
-.title-line { display: block; white-space: nowrap; }
+.paper-header h1 { margin: 0 auto; }
+.title-line { display: block; white-space: normal; }
 .contributors { font-size: 14px; line-height: 1.95; margin: var(--intro-group-gap) auto 0; color: #515967; }
 .contributors > span, .author-pair > span { display: inline-block; white-space: nowrap; }
 .contributors > .author-pair { display: block; margin-top: 10px; white-space: nowrap; }
-.affiliations { display: flex; justify-content: center; flex-wrap: wrap; column-gap: 20px; row-gap: 6px; margin: var(--intro-group-gap) auto 0; font-size: 12.5px; color: #626b79; line-height: 1.8; }
+.affiliations { display: flex; justify-content: center; flex-wrap: wrap; column-gap: 20px; row-gap: 6px; margin: 36px auto 0; font-size: 12.5px; color: #626b79; line-height: 1.8; }
 .affiliations > span { display: inline-block; white-space: nowrap; }
 .affiliations sup { margin-right: 3px; }
-.author-note { font-size: 11px; color: var(--muted); margin-top: 18px; line-height: 1.6; }
+.author-note { font-size: 11px; color: var(--muted); margin-top: 12px; line-height: 1.6; }
 .paper-links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); width: min(380px, 100%); gap: 10px; margin: var(--intro-group-gap) auto 0; }
 .pill { display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: 100%; min-width: 0; min-height: 44px; white-space: nowrap; background: var(--ink); color: #fff; padding: 9px 20px; border: 0; border-radius: 30px; font-size: 14px; line-height: 1.5; transition: background .15s, transform .15s; }
 .pill:not(:disabled):hover { background: var(--purple); text-decoration: none; transform: translateY(-1px); }
 .pill:disabled { cursor: default; opacity: 1; -webkit-text-fill-color: currentColor; }
 .pill svg { width: 18px; height: 18px; }
-.video-section { --video-pad: clamp(24px, 4svh, 48px); min-height: 100vh; min-height: 100svh; min-height: 100dvh; display: grid; align-items: center; padding-block: var(--video-pad); }
+/* The introduction supplies the upper gap; avoid stacking a second video margin. */
+.video-section { --video-fit-gap: clamp(24px, 4svh, 48px); padding-block: 0; }
 .video-figure { width: 100%; }
 .video-frame { width: 100%; margin-inline: auto; aspect-ratio: 16 / 9; border: 1px solid var(--line); border-radius: 9px; overflow: hidden; background: #fff; }
 .video-frame video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: contain; background: #fff; }
 .video-frame video:focus-visible { outline: 3px solid var(--purple); outline-offset: -3px; }
 
-/* A shared heading scale, white surfaces, and generous section spacing. */
+/* Apply the chapter gap once, above each section, so adjacent paddings never add up. */
 h2 { font-size: var(--section-heading); font-weight: 700; text-align: center; letter-spacing: -.7px; margin-bottom: 38px; }
 h3 { font-size: 24px; letter-spacing: -.35px; font-weight: 650; }
-.section { padding: 88px 0; }
-#abstract { padding-top: clamp(160px, 20svh, 260px); }
+.section, .overview-section { padding: var(--section-space) 0 0; }
 .section-soft { background: transparent; }
-.overview-section { padding-block: 48px; }
 .research-figure { margin: 0; width: 100%; }
 .figure-button { display: block; position: relative; width: 100%; padding: 0; border: 0; background: #fff; cursor: zoom-in; border-radius: 5px; }
 .figure-button img { width: 100%; height: auto; }
@@ -243,29 +244,27 @@ body.dialog-open { overflow: hidden; }
 }
 /* Keep the complete video visible on short desktop / landscape screens. */
 @media (max-height: 620px) {
-  .video-frame { width: min(100%, calc((100svh - 2 * var(--video-pad) - 60px) * 16 / 9)); }
+  .video-frame { width: min(100%, calc((100svh - 2 * var(--video-fit-gap) - 60px) * 16 / 9)); }
 }
 @media (min-width: 761px) and (max-height: 680px) {
   .intro-screen { padding-block: 24px; }
-  .paper-header { --intro-group-gap: 22px; }
-  .wordmark { width: 280px; margin-bottom: 14px; }
-  .hero-slogan { font-size: 17px; margin: 30px auto 0; }
+  .paper-header { --intro-group-gap: 36px; }
+  .wordmark { width: 280px; margin-bottom: 28px; }
+  .hero-slogan { font-size: 17px; margin: 36px auto 0; }
 }
 @media (max-width: 760px) {
-  :root { --section-heading: 28px; }
+  :root { --section-heading: 28px; --section-space: 64px; }
   .container, .reading-width { width: calc(100% - 36px); }
   .intro-screen { padding-block: 32px; }
-  .wordmark { width: min(280px, 100%); margin-bottom: 26px; }
-  .hero-slogan { font-size: 15px; margin: 30px auto 0; }
+  .wordmark { width: min(280px, 100%); margin-bottom: 30px; }
+  .hero-slogan { font-size: 15px; margin: 36px auto 0; }
   h1 { font-size: 32px; letter-spacing: -.6px; line-height: 1.22; }
   .title-line { display: inline; white-space: normal; }
-  .paper-header { --intro-group-gap: clamp(28px, 4.5svh, 36px); }
+  .paper-header { --intro-group-gap: 36px; }
   .contributors { font-size: 13px; line-height: 1.95; }
   .affiliations { column-gap: 16px; row-gap: 4px; font-size: 11.5px; }
   .affiliations > span { max-width: 100%; white-space: normal; }
-  .author-note { margin-top: 16px; }
-  .section { padding-block: 64px; }
-  .overview-section { padding-block: 40px; }
+  .author-note { margin-top: 12px; }
   h2 { margin-bottom: 32px; }
   h3 { font-size: 22px; }
   .abstract-text { text-align: left; font-size: 16px; line-height: 1.8; }
