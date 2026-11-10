@@ -7,8 +7,12 @@
     if (video.dataset.mediaLoaded) return;
     video.dataset.mediaLoaded = 'true';
     if (video.dataset.poster) video.poster = video.dataset.poster;
+    // Select once, when first needed. Resizing never reloads a playing video.
+    const compact = window.matchMedia('(max-width: 760px)').matches ||
+      window.matchMedia('(max-width: 1024px) and (pointer: coarse)').matches ||
+      navigator.connection?.saveData;
     video.querySelectorAll('source[data-src]').forEach(source => {
-      source.src = source.dataset.src;
+      source.src = (compact && source.dataset.mobileSrc) || source.dataset.src;
     });
     video.preload = 'metadata';
     video.load();
