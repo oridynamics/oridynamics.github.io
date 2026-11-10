@@ -1,6 +1,18 @@
 (() => {
   'use strict';
   const videos = Array.from(document.querySelectorAll('video'));
+  // Do not request off-screen media at page load. Attach each source once,
+  // close to its viewport entry or immediately on a deliberate interaction.
+  const prepareVideo = video => {
+    if (video.dataset.mediaLoaded) return;
+    video.dataset.mediaLoaded = 'true';
+    if (video.dataset.poster) video.poster = video.dataset.poster;
+    video.querySelectorAll('source[data-src]').forEach(source => {
+      source.src = source.dataset.src;
+    });
+    video.preload = 'metadata';
+    video.load();
+  };
   const playback = new Map(videos.map(video => [video, {
     userPaused: false, internalPause: false, pending: false,
     blocked: false, hasPlayed: false, automatic: false, retries: 0, scrubbing: false,
@@ -30,6 +42,10 @@
       return;
     }
     const height = window.innerHeight;
+    if (!('IntersectionObserver' in window)) videos.forEach(video => {
+      const rect = video.getBoundingClientRect();
+      if (rect.top < height && rect.bottom > 0) prepareVideo(video);
+    });
     // A seek gesture owns the player until the pointer is released.
     if (videos.some(video => playback.get(video).scrubbing)) return;
     const expanded = document.fullscreenElement || document.querySelector('.application-player.is-expanded');
@@ -68,6 +84,7 @@
     // Muting the first automatic start satisfies browser autoplay policies.
     // A visitor's later audio choice is retained when returning to the video.
     if (!state.hasPlayed) centered.muted = true;
+    prepareVideo(centered);
     centered.play().then(() => { state.retries = 0; }).catch(error => {
       if (error.name === 'AbortError' && centerCandidate === centered && !state.userPaused && state.retries < 3) {
         // Loading or a rapid scroll can interrupt play(). Retry without requiring another scroll.
@@ -183,6 +200,7 @@
       status.hidden = true;
       playback.get(video).userPaused = !video.paused;
       if (!video.paused) return video.pause();
+      prepareVideo(video);
       try { await video.play(); } catch { status.hidden = false; }
     };
     play.addEventListener('click', togglePlay);
@@ -268,11 +286,19 @@
   const dialog = document.querySelector('#figure-dialog');
   const picture = document.querySelector('#dialog-img');
   let previousFocus;
+  let figureRequest = 0;
   document.querySelectorAll('[data-figure]').forEach(button => {
     button.addEventListener('click', () => {
       previousFocus = button;
       pauseAllVideos();
-      picture.src = button.dataset.figure;
+      const request = ++figureRequest;
+      picture.src = button.querySelector('img').currentSrc || button.querySelector('img').src;
+      const fullFigure = new Image();
+      fullFigure.decoding = 'async';
+      fullFigure.onload = () => {
+        if (request === figureRequest && dialog.open) picture.src = fullFigure.src;
+      };
+      fullFigure.src = button.dataset.figure;
       picture.alt = button.dataset.title || button.querySelector('img').alt;
       const crop = document.querySelector('#dialog-crop');
       crop.classList.toggle('figure-crop', Boolean(button.dataset.crop));
@@ -291,6 +317,7 @@
     if (event.clientX < box.left || event.clientX > box.right || event.clientY < box.top || event.clientY > box.bottom) dialog.close();
   });
   dialog.addEventListener('close', () => {
+    figureRequest++;
     document.body.classList.remove('dialog-open');
     previousFocus?.focus();
   });
@@ -402,5 +429,25 @@
   document.addEventListener('visibilitychange', queuePlaybackCheck);
   document.addEventListener('fullscreenchange', queuePlaybackCheck);
   reducedMotion.addEventListener('change', queuePlaybackCheck);
+  videos.forEach(video => {
+    video.addEventListener('pointerdown', () => prepareVideo(video), { capture: true });
+    video.addEventListener('keydown', event => {
+      if ([' ', 'Enter', 'k', 'K'].includes(event.key)) prepareVideo(video);
+    }, { capture: true });
+  });
+  if ('IntersectionObserver' in window) {
+    const observeMedia = (items, rootMargin) => {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          prepareVideo(entry.target);
+          observer.unobserve(entry.target);
+        });
+      }, { rootMargin });
+      items.forEach(video => observer.observe(video));
+    };
+    observeMedia(videos.filter(video => video.id === 'project-video'), '0px');
+    observeMedia(videos.filter(video => video.id !== 'project-video'), '400px 0px');
+  }
   queuePlaybackCheck();
 })();
